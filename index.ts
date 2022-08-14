@@ -6,6 +6,7 @@ import * as https from "https";
 const PLAYERS: { [key: string]: string } = {
   "31kaSpzjWzWhCqRrdrsVvvlszQe2": "Yuito",
   eqj2zn9e1iOujN43WIlQZyJRKV03: "kura",
+  "6gs8oHd1sja8LyJo90HpYNZeHGr1": "吉野史也",
 };
 
 function post(hooks_url: URL, message: string) {
