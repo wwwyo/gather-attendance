@@ -1,0 +1,17 @@
+{
+  "name": "gather-notification",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "patch-package",
+    "build": "tsc index.ts"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@gathertown/gather-game-client": "^36.0.3",
+    "dotenv": "^16.0.0",
+    "patch-package": "^6.4.7",
+    "ws": "^8.5.0"
+  }
+}
