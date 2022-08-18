@@ -3,6 +3,14 @@ import { env } from "process";
 import * as dotenv from "dotenv";
 import * as https from "https";
 
+const server = https.createServer((_, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello World");
+});
+
+server.listen(Number(process.env.PORT) || 8000, "0.0.0.0");
+
 const PLAYERS: { [key: string]: string } = {
   "31kaSpzjWzWhCqRrdrsVvvlszQe2": "Yuito",
   eqj2zn9e1iOujN43WIlQZyJRKV03: "kura",
