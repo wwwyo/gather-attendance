@@ -5,7 +5,8 @@
   "scripts": {
     "postinstall": "patch-package",
     "build": "tsc index.ts",
-    "start": "npm run build && node index.js"
+    "start": "node index.js",
+    "deploy": "git push heroku main"
   },
   "author": "",
   "license": "MIT",
