@@ -17,6 +17,11 @@ const PLAYERS: { [key: string]: string } = {
   "6gs8oHd1sja8LyJo90HpYNZeHGr1": "吉野史也",
 };
 
+// 止まるの防止
+setInterval(() => {
+  https.get("https://gather-attendance.herokuapp.com/");
+}, 15 * 60 * 1000);
+
 function post(hooks_url: URL, message: string) {
   const content = JSON.stringify({ text: message });
   const options = {
