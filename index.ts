@@ -4,12 +4,11 @@ import * as dotenv from "dotenv";
 import * as https from "https";
 
 const server = https.createServer((_, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World");
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ message: "起きたよ！" }));
 });
 
-server.listen(Number(process.env.PORT) || 8000, "0.0.0.0");
+server.listen(Number(env.PORT) || 8000, "0.0.0.0");
 
 const PLAYERS: { [key: string]: string } = {
   "31kaSpzjWzWhCqRrdrsVvvlszQe2": "Yuito",
@@ -17,9 +16,24 @@ const PLAYERS: { [key: string]: string } = {
   "6gs8oHd1sja8LyJo90HpYNZeHGr1": "吉野史也",
 };
 
-// 止まるの防止
+// herokuのsleep防止
 setInterval(() => {
-  https.get("https://gather-attendance.herokuapp.com/");
+  https
+    .get("https://gather-attendance.herokuapp.com/", (res) => {
+      let body = "";
+      res.setEncoding("utf8");
+
+      res.on("data", (chunk) => {
+        body += chunk;
+      });
+
+      res.on("end", (res: any) => {
+        console.log(body);
+      });
+    })
+    .on("error", (e) => {
+      console.log(`error: ${e}`);
+    });
 }, 15 * 60 * 1000);
 
 function post(hooks_url: URL, message: string) {
