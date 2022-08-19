@@ -16,26 +16,6 @@ const PLAYERS: { [key: string]: string } = {
   "6gs8oHd1sja8LyJo90HpYNZeHGr1": "吉野史也",
 };
 
-// herokuのsleep防止
-setInterval(() => {
-  https
-    .get("https://gather-attendance.herokuapp.com/", (res) => {
-      let body = "";
-      res.setEncoding("utf8");
-
-      res.on("data", (chunk) => {
-        body += chunk;
-      });
-
-      res.on("end", (res: any) => {
-        console.log(body);
-      });
-    })
-    .on("error", (e) => {
-      console.log(`error: ${e}`);
-    });
-}, 15 * 60 * 1000);
-
 function post(hooks_url: URL, message: string) {
   const content = JSON.stringify({ text: message });
   const options = {
